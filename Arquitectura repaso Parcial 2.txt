@@ -1,0 +1,164 @@
+Arquitectura repaso Parcial 2
+
+Subrutinas: Son conjuntos de instrucciones que forman parte del algoritmo principal. Para llamar una intruccion se usa CALL y para regresar al programa original se usa RET. 
+Cuando se usa CALL guarda la ubicación actual antes del salto para poder retornar a ese punto posteriormente.
+
+Ventajas:
+-Reducen la cantidad de código
+-Organizan el programa de mejor manera
+-Facilitan la depuración (Se identifican los errores mas facilmente)
+-Facilitan el desarrollo y mantenimiento de los programas
+
+Interrupciones:
+
+Por Hardware:
+Son señales eléctricas producidas por dispositivos fisicos de la maquina. Esta informa al CPU que necesita su atención. Este detiene el proceso y atiende la interrupción. Cuando termina con la interrupción reanuda la ejecución desde donde fue interrumpida. Sus fuentes pueden ser: 
+	-Presionar una tecla
+	-El Reloj
+	-La Impresora
+	-El puerto serie
+	-El disco
+Las producen los periféricos. No están programadas y ocurren en cualquier momento
+
+	Interrupciones internas: Son manejadas por le hardware y no se pueden modificar. Como el reloj cada segundo hace una interrupción para actualizar la hora.
+	Externas: No se pueden desactivar. Por ejemplo el teclado, se inicia la interrupción al apretar la tecla y se reanuda al soltarla. Existen dos tipos:
+	---------Enmascarables: Aquellas que el procesador puede no atender o ignorar como para la atención de un periferico
+	---------No Enmascarables: Estas no se puede evitar que sean atendidas y son de mayor prioridad. Se usan en eventos tipo catástrofe para el sistema.
+
+Por Software: 
+Son generadas por un programa mientras este esta ejecutándose. También conocidas como llamadas al sistema. Comparado con interrupciones de hardware estas tienen mayor prioridad. Se clasifica en dos:
+
+	1.Interrupciones del Sistema Operativo: del DOS y del BIOS
+	2.Interrupciones del Usuario: Son aquellas programadas por el usuario y este decide cuando y donde generarlas
+
+
+Excepciones del procesador:
+	Orden de Prioridad:
+	1. Excepciones del procesador
+	2. Interrupciones por software
+	3. Interrupciones por hardware no enmascarables
+	4. Interrupciones por hardware enmascarables
+
+ROM BIOS:
+Es un circuito que no necesita energía para mantener información guardadas que contiene rutinas o procedimientos que proveen las funciones básicas para controlar las diferentes entradas y salidas del computador. Esta contiene
+	Rutinas de inicio
+	Diagnostico
+	Configuración del sistema
+
+Vectores de interrupción:
+
+00h: División entre cero
+01h: Un solo paso
+02h: Interrupción no enmascarable
+03h: Punto de Ruptura
+04h: Desbordamiento
+05h: Impresión en Pantalla
+08h: Cronómetro del Sistema
+09h: Interrupción del teclado
+0Bh: Control de COM1
+0Eh: Control de Disco Flexible
+
+Subrutinas de interrupción (Teclado):
+
+• 00H lee un carácter
+• 01H determina si hay un carácter en el buffer
+• 02H regresa el estado actual del shift
+• 05H escribe en el buffer del teclado
+• 10H lee un carácter desde el teclado
+• 11H determina si un carácter está en el buffer
+• 12H regresa el estado actual del shift
+
+Subrutinas de interrupción (Video)
+
+• 00H Activa el Modo de Video
+• 01H Asigna el tamaño del cursor
+• 02H Asigna la posición del cursor
+• 03H Lee la posición y tamaño del cursor
+• 05H Selecciona la página activa de la pantalla
+• 06H Mueve filas hacia arriba (scroll up)
+• 07H Mueve filas hacia abajo (scrol down)
+• 08H Lee el carácter y el atributo en la posición del cursor
+• 09H Muestra (escribe) el carácter y atributo en la posición del cursor
+• 0AH Escribe sólo el carácter sin modificar el atributo
+• 0EH Salida de Teletipo
+• 0FH Lee modo de video actual
+
+Salto Condicional (no signo)
+JA
+Salto si es Mayor (Above)
+Sin considerar el signo, destino > fuente
+
+Salto Condicional (no signo)
+JAE
+Salto si es Mayor o Igual (Above or Equal)
+Sin considerar el signo, destino ≥ fuente
+
+Salto Condicional (no signo)
+JB
+Salto si es Menor (Below)
+Sin considerar el signo, destino < fuente
+
+Salto Condicional (no signo)
+JBE
+Salto si es Menor o Igual (Below or Equal)
+Sin considerar el signo, destino ≤ fuente
+
+Salto Condicional (no signo)
+JE
+Salto si es Igual (Equal)
+Destino = fuente
+
+Salto Condicional (signo)
+JG
+Salto si es Mayor (Greater)
+Considerando el signo, destino > fuente
+
+Salto Condicional (signo)
+JGE
+Salto si es Mayor o Igual (Greater or Equal)
+Considerando el signo, destino ≥ fuente
+
+Salto Condicional (signo)
+JL
+Salto si es Menor (Less)
+Considerando el signo, destino < fuente
+
+Salto Condicional (signo)
+JLE
+Salto si es Menor o Igual (Less or Equal)
+Considerando el signo, destino ≤ fuente
+
+Salto Incondicional
+JMP
+Salto Incondicional
+Siempre salta, sin condición
+
+Salto Condicional (bandera)
+JC
+Salto si hay Acarreo (Carry)
+Bandera de acarreo (CF) está activada
+
+Salto Condicional (bandera)
+JNC
+Salto si no hay Acarreo (No Carry)
+Bandera de acarreo (CF) no está activada
+
+Salto Condicional (bandera)
+JZ
+Salto si es Cero (Zero)
+Bandera de cero (ZF) está activada
+
+Salto Condicional (bandera)
+JNZ
+Salto si no es Cero (Not Zero)
+Bandera de cero (ZF) no está activada
+
+Salto Incondicional
+CALL
+Llama a Subrutina
+Siempre llama, guarda dirección de retorno
+
+Salto Incondicional
+RET
+Retorna de Subrutina
+Retorna al punto guardado por CALL
